@@ -1,0 +1,109 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+necesito  3 fuentes de datos: ocasiones de muestreo (y), covariables a nivel de sitio (siteCovs), y covariables a nivel de ocasion de muestreo (ObsCovs)ninguna en este caso), esto se guarda en una sola matriz que es umf
+```{r}
+library(unmarked)
+library(AICcmodavg)
+```
+Arrelgar no pudimos abrir cvs mazetas
+```{r}
+Culpeo <- read.csv("Culpeo", sep = ";", header = T)
+```
+Cambiar ecosistema a factor
+```{r}
+Culpeo[,9] = as.factor(Culpeo[,9])
+str(Culpeo)
+```
+ahora hacer el "y", cortar para que queden las oc hasta la 6
+```{r}
+y = Culpeo[,2:7]
+```
+
+ahora hacer = covariables a nivel de sitio (siteCovs)
+```{r}
+siteCovs = data.frame(Culpeo[,c("Ecosistema", "sensor", "Alturact")])
+```
+obsCovs no existe
+
+ahora hacer "umf" (es una función)
+```{r}
+umf = unmarkedFrameOccu(y=y,siteCovs = siteCovs)
+summary(umf)
+```
+#Modelos de ocupación
+función de ocupación = occu variables de detección y segunda parte son variable de ocupación, umf= fuente de datos
+Ej.Modelo1 = occu(~Deteccion1 + Detección2 + Detección"n" ~ Ocupación1 + Ocupacion2 + Ocupación"n", umf)
+
+#Modeloglobal
+
+usa de referencia (primera en orden alfabetico, en este caso "Bosque"), Estimate = si es positivo es mas probable de que se ocupe por la especie (sitio), recordar que estamos compararando con bosque (intercept)
+
+Estimate = raro el valor de 7.28... (muy alto, se confirma con SE)
+SE = error standar (muy alto, probable juntar matorral y tundra)
+P(>|Z|) = mas alto que 0,05, por lo tanto, no son significativos, por lo tanto, no hay diferncias en ocupación por "Ecosistema" (inferencia)
+
+
+Sensor= negativo = a mayor distancia del sensor, menor probabilidad de detectar zorro
+Alturact = negativo = a mayor altura, menor probabilidad de detectar zorro 
+```{r}
+Modeloglobal = occu(~sensor + Alturact ~ Ecosistema, umf)
+summary(Modeloglobal)
+```
+Modelo global no es tan bueno, ahora probar modelos alternativos = en general dejar fijo "Ocupación"
+Global de ocupación
+1= modelo de detección nula sin covariables de detección
+2= 
+```{r}
+Modelo.1 = occu(~1 ~ Ecosistema, umf)
+Modelo.sensor = occu(~sensor ~ Ecosistema, umf)
+Modelo.altura = occu(~Alturact ~ Ecosistema, umf)
+Modelotodos = occu(~sensor + Alturact ~ Ecosistema, umf)
+
+```
+#Evaluación de modelos
+
+.=1
+```{r}
+modelosdedeteccion = fitList(
+  'p(.)psi(Ecosistema)' = Modelo.1,
+  'p(sensor)psi(Ecosistema)' = Modelo.sensor,
+  'p(Alturact)psi(Ecosistema)' = Modelo.altura,
+  'p(sensor + Alturact)psi(Ecosistema)' = Modelotodos
+)
+```
+#Comparar modelos de detección con AIC
+```{r}
+set.candidatos = c(Modelo.1, Modelo.sensor, Modelo.altura, Modelotodos)
+modnames = c("Modelo.1", "Modelo.sensor", "Modelo.altura", "Modelotodos")
+
+```
+
+#aic TABS, PARA HACER COMPARACIONES DE MODELOS
+Second.ord = tira el AicC Y no AIC, cuando uno tiene pocos datos hace un ajuste Aicc= a medida que tienes mas datos se parece AIC
+
+Tabla:
+K= numero de parametros (todos = 6, intercepto, ecosistema tiene 3 )
+AICc, AICcwt, Cum.wt, LL = NO IMPORTAN MUCHO por ahora...
+Delta_AICC = comparación del mejor modelo, modelos con delta menor a 2 no tienen diferencias significativas (plausibles)
+
+
+Parametros: 
+Ocupación=
+Int
+Ec. Tundra
+Ec. Matorral
+Detección = 
+Int
+sensor
+Alturact
+```{r}
+aictab(set.candidatos, modnames, 
+       second.ord = TRUE,sort = TRUE)
+summary(Modelo.1)
+```
+preguntas:
+- que hacemos con ecosistema (juntar tundra con matorral?)
+- como evaluar estación o temporada, 4 meses duración desde la instalación hasta retiro de CT.
+
