@@ -3,9 +3,12 @@ title: "R Notebook"
 output: html_notebook
 ---
 necesito  3 fuentes de datos: ocasiones de muestreo (y), covariables a nivel de sitio (siteCovs), y covariables a nivel de ocasion de muestreo (ObsCovs)ninguna en este caso), esto se guarda en una sola matriz que es umf
+
+#Librerias
 ```{r}
 library(unmarked)
 library(AICcmodavg)
+library(readr)
 ```
 Arrelgar no pudimos abrir cvs mazetas
 ```{r}
@@ -106,9 +109,11 @@ aictab(set.candidatos, modnames,
 summary(Modelo.1)
 ```
 #preguntas:
+
 - qué hacemos con ecosistema (juntar tundra con matorral?)
 
-Resp: Con los ecosistemas omitir esta variable como tal en las fichas, descargar el raster desde "https://www.globalforestwatch.org/map/?map=eyJjZW50ZXIiOnsibGF0IjotNTMuMzgwMDQzNjc2NDA3NjMsImxuZyI6LTcxLjM1OTYxMzI5OTMyMDQyfSwiem9vbSI6MTEuMjE4MjI2NzM1MTcwMzQ3fQ%3D%3D&mapPrompts=eyJvcGVuIjp0cnVlLCJzdGVwc0tleSI6InJlY2VudEltYWdlcnkifQ%3D%3D", y luego generar una capa de buffer con un radio de 500m justificado con "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0137854"
+Resp: Con los ecosistemas omitir esta variable como tal en las fichas, descargar el raster desde "https://www.globalforestwatch.org/map/?map=eyJjZW50ZXIiOnsibGF0IjotNTMuMzgwMDQzNjc2NDA3NjMsImxuZyI6LTcxLjM1OTYxMzI5OTMyMDQyfSwiem9vbSI6MTEuMjE4MjI2NzM1MTcwMzQ3fQ%3D%3D&mapPrompts=eyJvcGVuIjp0cnVlLCJzdGVwc0tleSI6InJlY2VudEltYWdlcnkifQ%3D%3D", y luego generar una capa de buffer con un radio de 500m justificado con "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0137854
+
 - primer paso poner las coordenadas reales de los puntos de ct
 
 - como evaluar estación o temporada, 4 meses duración desde la instalación hasta retiro de CT. queda pendiente, pero como variable de (detección?)
