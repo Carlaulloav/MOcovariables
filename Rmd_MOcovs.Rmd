@@ -10,6 +10,7 @@ library(AICcmodavg)
 Arrelgar no pudimos abrir cvs mazetas
 ```{r}
 Culpeo <- read.csv("Culpeo", sep = ";", header = T)
+
 ```
 Cambiar ecosistema a factor
 ```{r}
@@ -42,7 +43,7 @@ usa de referencia (primera en orden alfabetico, en este caso "Bosque"), Estimate
 
 Estimate = raro el valor de 7.28... (muy alto, se confirma con SE)
 SE = error standar (muy alto, probable juntar matorral y tundra)
-P(>|Z|) = mas alto que 0,05, por lo tanto, no son significativos, por lo tanto, no hay diferncias en ocupación por "Ecosistema" (inferencia)
+P(>|Z|) = mas alto que 0,05, por lo tanto, no son significativos, por lo tanto, no hay diferencias en ocupación por "Ecosistema" (inferencia)
 
 
 Sensor= negativo = a mayor distancia del sensor, menor probabilidad de detectar zorro
@@ -89,15 +90,16 @@ AICc, AICcwt, Cum.wt, LL = NO IMPORTAN MUCHO por ahora...
 Delta_AICC = comparación del mejor modelo, modelos con delta menor a 2 no tienen diferencias significativas (plausibles)
 
 
-Parametros: 
-Ocupación=
-Int
-Ec. Tundra
-Ec. Matorral
-Detección = 
-Int
-sensor
-Alturact
+# Parametros: 
+ Ocupación =
+- Int
+- Ec. Tundra
+- Ec. Matorral
+ Detección =
+- Int
+- sensor
+- Alturact
+
 ```{r}
 aictab(set.candidatos, modnames, 
        second.ord = TRUE,sort = TRUE)
@@ -106,4 +108,9 @@ summary(Modelo.1)
 preguntas:
 - que hacemos con ecosistema (juntar tundra con matorral?)
 - como evaluar estación o temporada, 4 meses duración desde la instalación hasta retiro de CT.
+
+Leer sobre:
+- AICc
+- Variables de detección y ocupación
+- Delta AICc
 
