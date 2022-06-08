@@ -2,6 +2,7 @@
 title: "R Notebook"
 output: html_notebook
 ---
+## PARTE 1
 necesito  3 fuentes de datos: ocasiones de muestreo (y), covariables a nivel de sitio (siteCovs), y covariables a nivel de ocasion de muestreo (ObsCovs)ninguna en este caso), esto se guarda en una sola matriz que es umf
 
 #Librerias
@@ -10,6 +11,9 @@ library(unmarked)
 library(AICcmodavg)
 library(readr)
 ```
+
+#Abrir base de datos
+
 Arrelgar no pudimos abrir cvs mazetas
 ```{r}
 Culpeo <- read.csv("Culpeo", sep = ";", header = T)
@@ -122,4 +126,7 @@ Leer sobre:
 - AICc
 - Variables de detección y ocupación
 - Delta AICc
+
+## PARTE 2, probando modelos añadiendo variable de detección 
+
 

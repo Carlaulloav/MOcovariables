@@ -1768,30 +1768,32 @@ pre code {
 
 
 <!-- rnb-text-begin -->
+<div id="parte-1" class="section level2">
+<h2>PARTE 1</h2>
 <p>necesito 3 fuentes de datos: ocasiones de muestreo (y), covariables a
 nivel de sitio (siteCovs), y covariables a nivel de ocasion de muestreo
 (ObsCovs)ninguna en este caso), esto se guarda en una sola matriz que es
 umf</p>
+<p>#Librerias</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh1bm1hcmtlZClcbmxpYnJhcnkoQUlDY21vZGF2ZylcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh1bm1hcmtlZClcbmxpYnJhcnkoQUlDY21vZGF2ZylcbmxpYnJhcnkocmVhZHIpXG5gYGAifQ== -->
 <pre class="r"><code>library(unmarked)
-library(AICcmodavg)</code></pre>
+library(AICcmodavg)
+library(readr)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJhBSUNjbW9kYXZn4oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gNC4xLjNcbiJ9 -->
-<pre><code>Warning: package ‘AICcmodavg’ was built under R version 4.1.3</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<p>#Abrir base de datos</p>
 <p>Arrelgar no pudimos abrir cvs mazetas</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuQ3VscGVvMiA8LSByZWFkLmNzdihcIkM6L1VzZXJzL0NhcmxhL09uZURyaXZlIC0gVW5pdmVyc2lkYWQgQXVzdHJhbCBkZSBDaGlsZS9Fc2NyaXRvcmlvL0V4Y2VsX2hpc3RvcmlhbGVTXCIsIHNlcCA9IFwiO1wiLCBoZWFkZXIgPSBUKVxuYGBgIn0= -->
-<pre class="r"><code>Culpeo2 &lt;- read.csv(&quot;C:/Users/Carla/OneDrive - Universidad Austral de Chile/Escritorio/Excel_historialeS&quot;, sep = &quot;;&quot;, header = T)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuQ3VscGVvIDwtIHJlYWQuY3N2KFwiQ3VscGVvXCIsIHNlcCA9IFwiO1wiLCBoZWFkZXIgPSBUKVxuYGBgIn0= -->
+<pre class="r"><code>Culpeo &lt;- read.csv(&quot;Culpeo&quot;, sep = &quot;;&quot;, header = T)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZyBpbiBmaWxlKGZpbGUsIFwicnRcIikgOlxuICBjYW5ub3Qgb3BlbiBmaWxlICdDOi9Vc2Vycy9DYXJsYS9PbmVEcml2ZSAtIFVuaXZlcnNpZGFkIEF1c3RyYWwgZGUgQ2hpbGUvRXNjcml0b3Jpby9FeGNlbF9oaXN0b3JpYWxlUyc6IFBlcm1pc3Npb24gZGVuaWVkXG5FcnJvciBpbiBmaWxlKGZpbGUsIFwicnRcIikgOiBjYW5ub3Qgb3BlbiB0aGUgY29ubmVjdGlvblxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZyBpbiBmaWxlKGZpbGUsIFwicnRcIikgOlxuICBjYW5ub3Qgb3BlbiBmaWxlICdDdWxwZW8nOiBObyBzdWNoIGZpbGUgb3IgZGlyZWN0b3J5XG5FcnJvciBpbiBmaWxlKGZpbGUsIFwicnRcIikgOiBjYW5ub3Qgb3BlbiB0aGUgY29ubmVjdGlvblxuIn0= -->
 <pre><code>Warning in file(file, &quot;rt&quot;) :
-  cannot open file &#39;C:/Users/Carla/OneDrive - Universidad Austral de Chile/Escritorio/Excel_historialeS&#39;: Permission denied
+  cannot open file &#39;Culpeo&#39;: No such file or directory
 Error in file(file, &quot;rt&quot;) : cannot open the connection</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
@@ -1841,30 +1843,13 @@ Error in file(file, &quot;rt&quot;) : cannot open the connection</code></pre>
 <p>ahora hacer “umf” (es una función)</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudW1mID0gdW5tYXJrZWRGcmFtZU9jY3UoeT15LHNpdGVDb3ZzID0gc2l0ZUNvdnMpXG5zdW1tYXJ5KHVtZilcbmBgYCJ9 -->
-<pre class="r"><code>umf = unmarkedFrameOccu(y=y,siteCovs = siteCovs)
-summary(umf)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeSh1bWYpXG5cbmBgYCJ9 -->
+<pre class="r"><code>summary(umf)
+</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoidW5tYXJrZWRGcmFtZSBPYmplY3RcblxuNjAgc2l0ZXNcbk1heGltdW0gbnVtYmVyIG9mIG9ic2VydmF0aW9ucyBwZXIgc2l0ZTogNiBcbk1lYW4gbnVtYmVyIG9mIG9ic2VydmF0aW9ucyBwZXIgc2l0ZTogNS43NyBcblNpdGVzIHdpdGggYXQgbGVhc3Qgb25lIGRldGVjdGlvbjogMTkgXG5cblRhYnVsYXRpb24gb2YgeSBvYnNlcnZhdGlvbnM6XG4gICAwICAgIDEgPE5BPiBcbiAzMjAgICAyNiAgIDE0IFxuXG5TaXRlLWxldmVsIGNvdmFyaWF0ZXM6XG4gICAgRWNvc2lzdGVtYSAgICAgc2Vuc29yICAgICAgICAgQWx0dXJhY3QgICAgIFxuIEJvc3F1ZSAgOjQzICAgTWluLiAgIDozLjAwMCAgIE1pbi4gICA6MC4xNTAwICBcbiBNYXRvcnJhbDogNyAgIDFzdCBRdS46NC4wMDAgICAxc3QgUXUuOjAuNDAwMCAgXG4gVHVuZHJhICA6MTAgICBNZWRpYW4gOjYuMDAwICAgTWVkaWFuIDowLjUwMDAgIFxuICAgICAgICAgICAgICAgTWVhbiAgIDo1Ljk2NyAgIE1lYW4gICA6MC40ODE3ICBcbiAgICAgICAgICAgICAgIDNyZCBRdS46OC4wMDAgICAzcmQgUXUuOjAuNTAwMCAgXG4gICAgICAgICAgICAgICBNYXguICAgOjguMDAwICAgTWF4LiAgIDowLjgwMDAgIFxuIn0= -->
-<pre><code>unmarkedFrame Object
-
-60 sites
-Maximum number of observations per site: 6 
-Mean number of observations per site: 5.77 
-Sites with at least one detection: 19 
-
-Tabulation of y observations:
-   0    1 &lt;NA&gt; 
- 320   26   14 
-
-Site-level covariates:
-    Ecosistema     sensor         Alturact     
- Bosque  :43   Min.   :3.000   Min.   :0.1500  
- Matorral: 7   1st Qu.:4.000   1st Qu.:0.4000  
- Tundra  :10   Median :6.000   Median :0.5000  
-               Mean   :5.967   Mean   :0.4817  
-               3rd Qu.:8.000   3rd Qu.:0.5000  
-               Max.   :8.000   Max.   :0.8000  </code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgICAgICBMZW5ndGggICAgICAgICAgICAgQ2xhc3MgICAgICAgICAgICAgIE1vZGUgXG4gICAgICAgICAgICAgICAgMSB1bm1hcmtlZEZyYW1lT2NjdSAgICAgICAgICAgICAgICBTNCBcbiJ9 -->
+<pre><code>           Length             Class              Mode 
+                1 unmarkedFrameOccu                S4 </code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1886,8 +1871,9 @@ de detectar zorro Alturact = negativo = a mayor altura, menor
 probabilidad de detectar zorro</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTW9kZWxvZ2xvYmFsID0gb2NjdSh+c2Vuc29yICsgQWx0dXJhY3QgfiBFY29zaXN0ZW1hLCB1bWYpXG5gYGAifQ== -->
-<pre class="r"><code>Modeloglobal = occu(~sensor + Alturact ~ Ecosistema, umf)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTW9kZWxvZ2xvYmFsID0gb2NjdSh+c2Vuc29yICsgQWx0dXJhY3QgfiBFY29zaXN0ZW1hLCB1bWYpXG5cbmBgYCJ9 -->
+<pre class="r"><code>Modeloglobal = occu(~sensor + Alturact ~ Ecosistema, umf)
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogMSBzaXRlcyBoYXZlIGJlZW4gZGlzY2FyZGVkIGJlY2F1c2Ugb2YgbWlzc2luZyBkYXRhLlxuIn0= -->
 <pre><code>Warning: 1 sites have been discarded because of missing data.</code></pre>
@@ -1902,7 +1888,7 @@ occu(formula = ~sensor + Alturact ~ Ecosistema, data = umf)
 
 Occupancy (logit-scale):</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MywibmNvbCI6NCwic3VtbWFyeSI6W119LCJyZGYiOiJINHNJQUFBQUFBQUFCZ3R5aVREbWl1QmlZR0JnWm1CaFpHUmdaZ1V5R2RpY0F3eU5USTBZR0ZpWWdEeEdCaFlHVGhCZEFWUWxER1N3QURFZlNJdjltdjJGbVl3dnBSMWtsVFg5ZVRRMzdIL29zaTNpdms4R1hQN0p5UjRkbzNrT0RyYW4xUXVPU2lUWmY1cDI3cVoyV3doY2ZwdkN4TmRjWGt2dHozdFArUHpQTlhQLzNaMS9wV01LVytEeWIwL3ZpMXo2MzlYKzVjVXRndjk1TmV5ZjlCNmRFMVcxRDgxaHJIbUp1YW5GUUlZQTJIRVFRUTdYNHBMTTNNU1NWQ2lmS2RnVjVvOHFLSU05UU1PdXBxcEdFODA0enFMOGNqMWtJNW1oRXR3YW5ua2xxVVhKcVFVbG1sQWhJZGZrL09MTTRwTFUzRVRmeEpMOG9xTEVIS2lNQUVJbXBEUXZwU2dSM2RISk9ZbkZNQnRnZ2x3cGlTV0plbWxGUU11QnZIOW9XdGp6QzBveTgvT0FtcGhBMGNDS3BwbXhDRTFBb0RRUDVJMFUzZVNNMHJ4c1hTTmprQTFnZVFqbWhkTE1TR3dXaUoxTS82Rm1zVUxOWWt2TlM4L01nd1VtYTA1aVVpck1wM3pBOEFJSGwxNUJVV1plQ2N3clFORml2Wkw4RW5pSWNDWG41OEJFd0o1aitBY0FNekpoNlg4Q0FBQT0ifQ== -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MywibmNvbCI6NCwic3VtbWFyeSI6W119LCJyZGYiOiJINHNJQUFBQUFBQUFCZ3R5aVREbWl1QmlZR0JnWm1CaFpHUmdaZ1V5R2RpY0F3eU5USTBZR0ZpWWdEeEdCaFlHVGhCZEFWUWxER1N3QURFZlNJdjltdjJGbVl3dnBSMWtsVFg5ZVRRMzdIL29zaTNpdms4R1hQN0p5UjRkbzNrT0RyYW4xUXVPU2lUWmY1cDI3cVoyV3doY2ZwdkN4TmRjWGt2dHozdFArUHpQTlhQLzNaMS9wV01LVytEeWIwL3ZpMXo2MzlYKzVjVXRndjk1TmV5ZjlCNmRFMVcxRDgxaHJIbUp1YW5GUUlZQTJIRVFRUTdYNHBMTTNNU1NWQ2lmS2RnVjVvOHFLSU05UU1PdXBxcEdFODA0enFMOGNqMWtJNW1oRXR3YW5ua2xxVVhKcVFVbG1sQWhJZGZrL09MTTRwTFUzRVRmeEpMOG9xTEVIS2lNQUVJbXBEUXZwU2dSM2RISk9ZbkZNQnRnZ2x3cGlTV0plbWxGUU11QnZIOW9XdGp6QzBveTgvT0FtcGhBMGNDS3BwbXhDRTJBdnpRUDVJMFUzZVNNMHJ4c1hWT1FCV0JwQ09hRjBzeEliQmFJbFV6L29VYXhRbzFpUzgxTHo4eURoU1ZyVG1KU0tzeWpmTURnQW9lV1hrRlJabDRKekNkQTBXSzlrdndTZUlCd0plZm53RVRBZm1QNEJ3RE1Mdk9VZmdJQUFBPT0ifQ== -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Estimate"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["SE"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["z"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["P(>|z|)"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.05614809","2":"0.649603","3":"0.08643448","4":"0.9311210","_rn_":"(Intercept)"},{"1":"7.28433727","2":"29.793571","3":"0.24449360","4":"0.8068486","_rn_":"EcosistemaMatorral"},{"1":"-0.53963773","2":"1.161818","3":"-0.46447685","4":"0.6423061","_rn_":"EcosistemaTundra"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
@@ -1913,7 +1899,7 @@ Occupancy (logit-scale):</code></pre>
 <pre><code>
 Detection (logit-scale):</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MywibmNvbCI6NCwic3VtbWFyeSI6W119LCJyZGYiOiJINHNJQUFBQUFBQUFCZ3R5aVREbWl1QmlZR0JnWm1CaFpHUmdaZ1V5R2RpY0F3eU5USTBZR0ZpWWdEeEdCaFlHVGhCZEFWUWxER1N3QURFZlNNditaK1dTK3liZnU3Zi9DUC8wTy8zbVd2dnZmTit3Zk5IckpUQjUrMis3ZHB6OTJOaHBmMUJHY2t2ZHMxc09qRS9VL2lnOXZ3ZlhmMy9CR1M4REI5SDludzdWdGdxa1h0aC84dm5aaHNKZmluRDlqeDhzbFlqZVVHRi83cVpoektNQWVmdFg5K1I5RjA1NWh1WXcxcnpFM05SaUlFTUE3RGlJSUlkcmNVbG1ibUpKS3BUUEZPd0s4MGNWbE1FZW9HRlhVMVdqaVdZY1oxRit1UjZ5a2N4UUNXNE56N3lTMUtMazFJSVNUYWdRVzNGcVhuRitFY3hPeDV5UzBxTEU1QkowQnlibkpCYkRUSU1KY3FVa2xpVHFwUlVCTFFMeS9xRnBZYzh2S01uTXp3TnFZZ0lGT1N1YVpzWWlOQUdCMGp5UWsxTjBrek5LODdKMWpZeEJOb0RsSVpnWFNqTWpzVmtnZGpMOWg1ckZDdk5VYWw1NlpoNHM0Rmh6RXBOU2M2QWNQbURZZ0lOR3I2QW9NNjhFNWhXZ2FMRmVTWDVKSWt3ZFYzSitEa3dFN0RtR2Z3QmNqQnljYXdJQUFBPT0ifQ== -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MywibmNvbCI6NCwic3VtbWFyeSI6W119LCJyZGYiOiJINHNJQUFBQUFBQUFCZ3R5aVREbWl1QmlZR0JnWm1CaFpHUmdaZ1V5R2RpY0F3eU5USTBZR0ZpWWdEeEdCaFlHVGhCZEFWUWxER1N3QURFZlNNditaK1dTK3liZnU3Zi9DUC8wTy8zbVd2dnZmTit3Zk5IckpUQjUrMis3ZHB6OTJOaHBmMUJHY2t2ZHMxc09qRS9VL2lnOXZ3ZlhmMy9CR1M4REI5SDludzdWdGdxa1h0aC84dm5aaHNKZmluRDlqeDhzbFlqZVVHRi83cVpoektNQWVmdFg5K1I5RjA1NWh1WXcxcnpFM05SaUlFTUE3RGlJSUlkcmNVbG1ibUpKS3BUUEZPd0s4MGNWbE1FZW9HRlhVMVdqaVdZY1oxRit1UjZ5a2N4UUNXNE56N3lTMUtMazFJSVNUYWdRVzNGcVhuRitFY3hPeDV5UzBxTEU1QkowQnlibkpCYkRUSU1KY3FVa2xpVHFwUlVCTFFMeS9xRnBZYzh2S01uTXp3TnFZZ0lGT1N1YVpzWWlOQUgrMGp5UWsxTjBrek5LODdKMVRVRVdnS1VobUJkS015T3hXU0JXTXYySEdzVUs4MU5xWG5wbUhpemNXSE1TazFKem9CdytZTkNBUTBhdm9DZ3pyd1RtRTZCb3NWNUpma2tpVEIxWGNuNE9UQVRzTjRaL0FBN2Q3b05xQWdBQSJ9 -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Estimate"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["SE"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["z"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["P(>|z|)"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"-0.7020386","2":"1.4205864","3":"-0.4941893","4":"0.6211725","_rn_":"(Intercept)"},{"1":"-0.1567259","2":"0.1336701","3":"-1.1724830","4":"0.2410032","_rn_":"sensor"},{"1":"-0.4526178","2":"2.2364025","3":"-0.2023866","4":"0.8396145","_rn_":"Alturact"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
@@ -1936,29 +1922,38 @@ general dejar fijo “Ocupación” Global de ocupación 1= modelo de
 detección nula sin covariables de detección 2=</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTW9kZWxvLjEgPSBvY2N1KH4xIH4gRWNvc2lzdGVtYSwgdW1mKVxuYGBgIn0= -->
-<pre class="r"><code>Modelo.1 = occu(~1 ~ Ecosistema, umf)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTW9kZWxvLjFcblxuYGBgIn0= -->
+<pre class="r"><code>Modelo.1
+</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogMSBzaXRlcyBoYXZlIGJlZW4gZGlzY2FyZGVkIGJlY2F1c2Ugb2YgbWlzc2luZyBkYXRhLlxuIn0= -->
-<pre><code>Warning: 1 sites have been discarded because of missing data.</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxub2NjdShmb3JtdWxhID0gfjEgfiBFY29zaXN0ZW1hLCBkYXRhID0gdW1mKVxuXG5PY2N1cGFuY3k6XG4ifQ== -->
+<pre><code>
+Call:
+occu(formula = ~1 ~ Ecosistema, data = umf)
+
+Occupancy:</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTW9kZWxvLnNlbnNvciA9IG9jY3UofnNlbnNvciB+IEVjb3Npc3RlbWEsIHVtZilcbmBgYCJ9 -->
-<pre class="r"><code>Modelo.sensor = occu(~sensor ~ Ecosistema, umf)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogMSBzaXRlcyBoYXZlIGJlZW4gZGlzY2FyZGVkIGJlY2F1c2Ugb2YgbWlzc2luZyBkYXRhLlxuIn0= -->
-<pre><code>Warning: 1 sites have been discarded because of missing data.</code></pre>
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MywibmNvbCI6NCwic3VtbWFyeSI6W119LCJyZGYiOiJINHNJQUFBQUFBQUFCZ3R5aVREbWl1QmlZR0JnWm1CaFpHUmdaZ1V5R2RpY0F3eU5USTBZR0ZpWWdEeEdCaFlHVGhCZEFWUWxER1N3QURFZlNJdjl0QzdiekgwY0N4MFVSSTVFT1NwODNmK3dOZk43MzA5ZHVQeWpCNyszeTA0dWRnalVqdnp6TmtqTi91UE15Y3BHYVJsdytjVlNvUzIycklIMmUzOGNsOUo2NzdqLy91MElCczhuNytEeTczbjBkODNwdVdIL2xxWHUxUXNkRnZ2SHAvL2UvdFcvQ3MxaHJIbUp1YW5GUUlZQTJIRVFRUTdYNHBMTTNNU1NWQ2lmS2RnVjVvOHFLSU05UU1PdXBxcEdFODA0enFMOGNqMWtJNW1oRXR3YW5ua2xxVVhKcVFVbG1sQWhJZGZrL09MTTRwTFUzRVRmeEpMOG9xTEVIS2lNQUVJbXBEUXZwU2dSM2RISk9ZbkZNQnRnZ2x3cGlTV0plbWxGUU11QnZIOW9XdGp6QzBveTgvT0FtcGhBMGNDS3BwbXhDRTJBdnpRUDVJMFUzZVNNMHJ4c1hVT1FCV0JwQ09hRjBzeEliQmFJbFV6L29VYXhRbzFpUzgxTHo4eURoU1ZyVG1KU0tzeWpmTURnQW9lV1hrRlJabDRKekNkQTBXSzlrdndTZUlCd0plZm53RVRBZm1QNEJ3Q05GK3NJZmdJQUFBPT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Estimate"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["SE"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["z"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["P(>|z|)"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.02201172","2":"0.5899638","3":"0.03731029","4":"0.9702376","_rn_":"(Intercept)"},{"1":"8.04056055","2":"68.6773674","3":"0.11707730","4":"0.9067988","_rn_":"EcosistemaMatorral"},{"1":"-0.54753588","2":"1.0999938","3":"-0.49776268","4":"0.6186513","_rn_":"EcosistemaTundra"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5EZXRlY3Rpb246XG4ifQ== -->
+<pre><code>
+Detection:</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTW9kZWxvLmFsdHVyYSA9IG9jY3UofkFsdHVyYWN0IH4gRWNvc2lzdGVtYSwgdW1mKVxuYGBgIn0= -->
-<pre class="r"><code>Modelo.altura = occu(~Alturact ~ Ecosistema, umf)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogMSBzaXRlcyBoYXZlIGJlZW4gZGlzY2FyZGVkIGJlY2F1c2Ugb2YgbWlzc2luZyBkYXRhLlxuIn0= -->
-<pre><code>Warning: 1 sites have been discarded because of missing data.</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTW9kZWxvdG9kb3MgPSBvY2N1KH5zZW5zb3IgKyBBbHR1cmFjdCB+IEVjb3Npc3RlbWEsIHVtZilcbmBgYCJ9 -->
-<pre class="r"><code>Modelotodos = occu(~sensor + Alturact ~ Ecosistema, umf)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogMSBzaXRlcyBoYXZlIGJlZW4gZGlzY2FyZGVkIGJlY2F1c2Ugb2YgbWlzc2luZyBkYXRhLlxuIn0= -->
-<pre><code>Warning: 1 sites have been discarded because of missing data.</code></pre>
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MSwibmNvbCI6NCwic3VtbWFyeSI6W119LCJyZGYiOiJINHNJQUFBQUFBQUFCZ3R5aVREbWl1QmlZR0JnWm1CaFpHUmdaZ1V5R2RpY0F3eU5USTBZR0ZpWWdEeEdCaFlHVGhCZEFWUWxER1N3QURFZlNHRC9uOWZGSjJJRWZzUDQ5cGQvV0wzN2tuRUR4ajhncm4yNEpHRHVRaGpmem5idnF4L2xlWWxvQnJQbUplYW1GZ01aQW1ERElZSWNyc1VsbWJtSkphbFFQbE93Szh3ZFZWQUdlNENHWFUxVmpTYWFjWnhGK2VWNnlFYkNKTGcxUFBOS1VvdVNVd3RLMFBXd0p1Y2tGcU9yNTBwSkxFblVTeXNDR2dYay9VUFR3cDVmVUpLWm53ZlV4QVFLRkZZMHpZeEZhQUw4cFhrZ1I2WG9KbWVVNW1YckdvSXNBRXRETUM4V05ndkVTcWIvVUtOWW9VYXhwZWFsWitiQlFvWTFKekVwTlFmSzRRTjZIdXgzdllLaXpMd1NtRStBb3NWNkpma2xpVEIxWE1uNU9UQVJzTjhZL2dFQW5hT0xSUXdDQUFBPSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Estimate"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["SE"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["z"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["P(>|z|)"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"-1.807483","2":"0.3120258","3":"-5.792738","4":"6.924818e-09","_rn_":"(Intercept)"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[1]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5BSUM6IDE4Ni40ODI0IFxuIn0= -->
+<pre><code>
+AIC: 186.4824 </code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1999,74 +1994,47 @@ medida que tienes mas datos se parece AIC</p>
 tiene 3 ) AICc, AICcwt, Cum.wt, LL = NO IMPORTAN MUCHO por ahora…
 Delta_AICC = comparación del mejor modelo, modelos con delta menor a 2
 no tienen diferencias significativas (plausibles)</p>
+</div>
 <div id="parametros" class="section level1">
 <h1>Parametros:</h1>
 <p>Ocupación = - Int - Ec. Tundra - Ec. Matorral Detección = - Int -
 sensor - Alturact</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWljdGFiKHNldC5jYW5kaWRhdG9zLCBtb2RuYW1lcywgXG4gICAgICAgc2Vjb25kLm9yZCA9IFRSVUUsc29ydCA9IFRSVUUpXG5gYGAifQ== -->
-<pre class="r"><code>aictab(set.candidatos, modnames, 
-       second.ord = TRUE,sort = TRUE)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShNb2RlbG8uMSlcblxuYGBgIn0= -->
+<pre class="r"><code>summary(Modelo.1)
+</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5Nb2RlbCBzZWxlY3Rpb24gYmFzZWQgb24gQUlDYzpcblxuICAgICAgICAgICAgICBLICAgQUlDYyBEZWx0YV9BSUNjIEFJQ2NXdCBDdW0uV3QgICAgIExMXG5Nb2RlbG8uMSAgICAgIDQgMTg3LjIxICAgICAgIDAuMDAgICAwLjQ4ICAgMC40OCAtODkuMjRcbk1vZGVsby5zZW5zb3IgNSAxODguMjMgICAgICAgMS4wMiAgIDAuMjkgICAwLjc3IC04OC41NlxuTW9kZWxvLmFsdHVyYSA1IDE4OS41NCAgICAgICAyLjMzICAgMC4xNSAgIDAuOTEgLTg5LjIxXG5Nb2RlbG90b2RvcyAgIDYgMTkwLjY2ICAgICAgIDMuNDUgICAwLjA5ICAgMS4wMCAtODguNTRcbiJ9 -->
-<pre><code>
-Model selection based on AICc:
-
-              K   AICc Delta_AICc AICcWt Cum.Wt     LL
-Modelo.1      4 187.21       0.00   0.48   0.48 -89.24
-Modelo.sensor 5 188.23       1.02   0.29   0.77 -88.56
-Modelo.altura 5 189.54       2.33   0.15   0.91 -89.21
-Modelotodos   6 190.66       3.45   0.09   1.00 -88.54</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShNb2RlbG8uMSlcbmBgYCJ9 -->
-<pre class="r"><code>summary(Modelo.1)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxub2NjdShmb3JtdWxhID0gfjEgfiBFY29zaXN0ZW1hLCBkYXRhID0gdW1mKVxuXG5PY2N1cGFuY3kgKGxvZ2l0LXNjYWxlKTpcbiJ9 -->
-<pre><code>
-Call:
-occu(formula = ~1 ~ Ecosistema, data = umf)
-
-Occupancy (logit-scale):</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MywibmNvbCI6NCwic3VtbWFyeSI6W119LCJyZGYiOiJINHNJQUFBQUFBQUFCZ3R5aVREbWl1QmlZR0JnWm1CaFpHUmdaZ1V5R2RpY0F3eU5USTBZR0ZpWWdEeEdCaFlHVGhCZEFWUWxER1N3QURFZlNJdjl0QzdiekgwY0N4MFVSSTVFT1NwODNmK3dOZk43MzA5ZHVQeWpCNyszeTA0dWRnalVqdnp6TmtqTi91UE15Y3BHYVJsdytjVlNvUzIycklIMmUzOGNsOUo2NzdqLy91MElCczhuNytEeTczbjBkODNwdVdIL2xxWHUxUXNkRnZ2SHAvL2UvdFcvQ3MxaHJIbUp1YW5GUUlZQTJIRVFRUTdYNHBMTTNNU1NWQ2lmS2RnVjVvOHFLSU05UU1PdXBxcEdFODA0enFMOGNqMWtJNW1oRXR3YW5ua2xxVVhKcVFVbG1sQWhJZGZrL09MTTRwTFUzRVRmeEpMOG9xTEVIS2lNQUVJbXBEUXZwU2dSM2RISk9ZbkZNQnRnZ2x3cGlTV0plbWxGUU11QnZIOW9XdGp6QzBveTgvT0FtcGhBMGNDS3BwbXhDRTFBb0RRUDVJMFUzZVNNMHJ4c1hXTkRrQTFnZVFqbWhkTE1TR3dXaUoxTS82Rm1zVUxOWWt2TlM4L01nd1VtYTA1aVVpck1wM3pBOEFJSGwxNUJVV1plQ2N3clFORml2Wkw4RW5pSWNDWG41OEJFd0o1aitBY0FGSE4zR1g4Q0FBQT0ifQ== -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Estimate"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["SE"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["z"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["P(>|z|)"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.02201172","2":"0.5899638","3":"0.03731029","4":"0.9702376","_rn_":"(Intercept)"},{"1":"8.04056055","2":"68.6773674","3":"0.11707730","4":"0.9067988","_rn_":"EcosistemaMatorral"},{"1":"-0.54753588","2":"1.0999938","3":"-0.49776268","4":"0.6186513","_rn_":"EcosistemaTundra"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5EZXRlY3Rpb24gKGxvZ2l0LXNjYWxlKTpcbiJ9 -->
-<pre><code>
-Detection (logit-scale):</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MSwibmNvbCI6NCwic3VtbWFyeSI6W119LCJyZGYiOiJINHNJQUFBQUFBQUFCZ3R5aVREbWl1QmlZR0JnWm1CaFpHUmdaZ1V5R2RpY0F3eU5USTBZR0ZpWWdEeEdCaFlHVGhCZEFWUWxER1N3QURFZlNHRC9uOWZGSjJJRWZzUDQ5cGQvV0wzN2tuRUR4ajhncm4yNEpHRHVRaGpmem5idnF4L2xlWWxvQnJQbUplYW1GZ01aQW1ERElZSWNyc1VsbWJtSkphbFFQbE93Szh3ZFZWQUdlNENHWFUxVmpTYWFjWnhGK2VWNnlFYkNKTGcxUFBOS1VvdVNVd3RLMFBXd0p1Y2tGcU9yNTBwSkxFblVTeXNDR2dYay9VUFR3cDVmVUpLWm53ZlV4QVFLRkZZMHpZeEZhQUlDcFhrZ1I2WG9KbWVVNW1YckdodUNiQURMUXpBdkZqWUx4RTZtLzFDeldLRm1zYVhtcFdmbXdZS0dOU2N4S1RVSHl1RUQraDdzZWIyQ29zeThFcGhYZ0tMRmVpWDVKWWt3ZFZ6SitUa3dFYkRuR1A0QkFENXNla0FOQWdBQSJ9 -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Estimate"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["SE"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["z"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["P(>|z|)"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"-1.807483","2":"0.3120258","3":"-5.792738","4":"6.924818e-09","_rn_":"(Intercept)"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[1]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5BSUM6IDE4Ni40ODI0IFxuTnVtYmVyIG9mIHNpdGVzOiA1OVxuSUQgb2Ygc2l0ZXMgcmVtb3ZlZCBkdWUgdG8gTkE6IDhcbm9wdGltIGNvbnZlcmdlbmNlIGNvZGU6IDBcbm9wdGltIGl0ZXJhdGlvbnM6IDQ5IFxuQm9vdHN0cmFwIGl0ZXJhdGlvbnM6IDAgXG4ifQ== -->
-<pre><code>
-AIC: 186.4824 
-Number of sites: 59
-ID of sites removed due to NA: 8
-optim convergence code: 0
-optim iterations: 49 
-Bootstrap iterations: 0 </code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgICAgTGVuZ3RoICAgICAgICAgICBDbGFzcyAgICAgICAgICAgIE1vZGUgXG4gICAgICAgICAgICAgIDEgdW5tYXJrZWRGaXRPY2N1ICAgICAgICAgICAgICBTNCBcbiJ9 -->
+<pre><code>         Length           Class            Mode 
+              1 unmarkedFitOccu              S4 </code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>preguntas: - que hacemos con ecosistema (juntar tundra con matorral?)
-- como evaluar estación o temporada, 4 meses duración desde la
-instalación hasta retiro de CT.</p>
+<p>#preguntas:</p>
+<ul>
+<li>qué hacemos con ecosistema (juntar tundra con matorral?)</li>
+</ul>
+<p>Resp: Con los ecosistemas omitir esta variable como tal en las
+fichas, descargar el raster desde “<a href="https://www.globalforestwatch.org/map/?map=eyJjZW50ZXIiOnsibGF0IjotNTMuMzgwMDQzNjc2NDA3NjMsImxuZyI6LTcxLjM1OTYxMzI5OTMyMDQyfSwiem9vbSI6MTEuMjE4MjI2NzM1MTcwMzQ3fQ%3D%3D&amp;mapPrompts=eyJvcGVuIjp0cnVlLCJzdGVwc0tleSI6InJlY2VudEltYWdlcnkifQ%3D%3D" class="uri">https://www.globalforestwatch.org/map/?map=eyJjZW50ZXIiOnsibGF0IjotNTMuMzgwMDQzNjc2NDA3NjMsImxuZyI6LTcxLjM1OTYxMzI5OTMyMDQyfSwiem9vbSI6MTEuMjE4MjI2NzM1MTcwMzQ3fQ%3D%3D&amp;mapPrompts=eyJvcGVuIjp0cnVlLCJzdGVwc0tleSI6InJlY2VudEltYWdlcnkifQ%3D%3D</a>”,
+y luego generar una capa de buffer con un radio de 500m justificado con
+“<a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0137854" class="uri">https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0137854</a></p>
+<ul>
+<li><p>primer paso poner las coordenadas reales de los puntos de
+ct</p></li>
+<li><p>como evaluar estación o temporada, 4 meses duración desde la
+instalación hasta retiro de CT. queda pendiente, pero como variable de
+(detección?)</p></li>
+</ul>
 <p>Leer sobre: - AICc - Variables de detección y ocupación - Delta
 AICc</p>
+<div id="parte-2-probando-modelos-añadiendo-variable-de-detección" class="section level2">
+<h2>PARTE 2, probando modelos añadiendo variable de detección</h2>
 <!-- rnb-text-end -->
 </div>
+</div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KbmVjZXNpdG8gIDMgZnVlbnRlcyBkZSBkYXRvczogb2Nhc2lvbmVzIGRlIG11ZXN0cmVvICh5KSwgY292YXJpYWJsZXMgYSBuaXZlbCBkZSBzaXRpbyAoc2l0ZUNvdnMpLCB5IGNvdmFyaWFibGVzIGEgbml2ZWwgZGUgb2Nhc2lvbiBkZSBtdWVzdHJlbyAoT2JzQ292cyluaW5ndW5hIGVuIGVzdGUgY2FzbyksIGVzdG8gc2UgZ3VhcmRhIGVuIHVuYSBzb2xhIG1hdHJpeiBxdWUgZXMgdW1mDQpgYGB7cn0NCmxpYnJhcnkodW5tYXJrZWQpDQpsaWJyYXJ5KEFJQ2Ntb2RhdmcpDQpgYGANCkFycmVsZ2FyIG5vIHB1ZGltb3MgYWJyaXIgY3ZzIG1hemV0YXMNCmBgYHtyfQ0KQ3VscGVvIDwtIHJlYWQuY3N2KCJDdWxwZW8iLCBzZXAgPSAiOyIsIGhlYWRlciA9IFQpDQoNCmBgYA0KQ2FtYmlhciBlY29zaXN0ZW1hIGEgZmFjdG9yDQpgYGB7cn0NCkN1bHBlb1ssOV0gPSBhcy5mYWN0b3IoQ3VscGVvWyw5XSkNCnN0cihDdWxwZW8pDQpgYGANCmFob3JhIGhhY2VyIGVsICJ5IiwgY29ydGFyIHBhcmEgcXVlIHF1ZWRlbiBsYXMgb2MgaGFzdGEgbGEgNg0KYGBge3J9DQp5ID0gQ3VscGVvWywyOjddDQpgYGANCg0KYWhvcmEgaGFjZXIgPSBjb3ZhcmlhYmxlcyBhIG5pdmVsIGRlIHNpdGlvIChzaXRlQ292cykNCmBgYHtyfQ0Kc2l0ZUNvdnMgPSBkYXRhLmZyYW1lKEN1bHBlb1ssYygiRWNvc2lzdGVtYSIsICJzZW5zb3IiLCAiQWx0dXJhY3QiKV0pDQpgYGANCm9ic0NvdnMgbm8gZXhpc3RlDQoNCmFob3JhIGhhY2VyICJ1bWYiIChlcyB1bmEgZnVuY2nDs24pDQpgYGB7cn0NCnVtZiA9IHVubWFya2VkRnJhbWVPY2N1KHk9eSxzaXRlQ292cyA9IHNpdGVDb3ZzKQ0Kc3VtbWFyeSh1bWYpDQpgYGANCiNNb2RlbG9zIGRlIG9jdXBhY2nDs24NCmZ1bmNpw7NuIGRlIG9jdXBhY2nDs24gPSBvY2N1IHZhcmlhYmxlcyBkZSBkZXRlY2Npw7NuIHkgc2VndW5kYSBwYXJ0ZSBzb24gdmFyaWFibGUgZGUgb2N1cGFjacOzbiwgdW1mPSBmdWVudGUgZGUgZGF0b3MNCkVqLk1vZGVsbzEgPSBvY2N1KH5EZXRlY2Npb24xICsgRGV0ZWNjacOzbjIgKyBEZXRlY2Npw7NuIm4iIH4gT2N1cGFjacOzbjEgKyBPY3VwYWNpb24yICsgT2N1cGFjacOzbiJuIiwgdW1mKQ0KDQojTW9kZWxvZ2xvYmFsDQoNCnVzYSBkZSByZWZlcmVuY2lhIChwcmltZXJhIGVuIG9yZGVuIGFsZmFiZXRpY28sIGVuIGVzdGUgY2FzbyAiQm9zcXVlIiksIEVzdGltYXRlID0gc2kgZXMgcG9zaXRpdm8gZXMgbWFzIHByb2JhYmxlIGRlIHF1ZSBzZSBvY3VwZSBwb3IgbGEgZXNwZWNpZSAoc2l0aW8pLCByZWNvcmRhciBxdWUgZXN0YW1vcyBjb21wYXJhcmFuZG8gY29uIGJvc3F1ZSAoaW50ZXJjZXB0KQ0KDQpFc3RpbWF0ZSA9IHJhcm8gZWwgdmFsb3IgZGUgNy4yOC4uLiAobXV5IGFsdG8sIHNlIGNvbmZpcm1hIGNvbiBTRSkNClNFID0gZXJyb3Igc3RhbmRhciAobXV5IGFsdG8sIHByb2JhYmxlIGp1bnRhciBtYXRvcnJhbCB5IHR1bmRyYSkNClAoPnxafCkgPSBtYXMgYWx0byBxdWUgMCwwNSwgcG9yIGxvIHRhbnRvLCBubyBzb24gc2lnbmlmaWNhdGl2b3MsIHBvciBsbyB0YW50bywgbm8gaGF5IGRpZmVyZW5jaWFzIGVuIG9jdXBhY2nDs24gcG9yICJFY29zaXN0ZW1hIiAoaW5mZXJlbmNpYSkNCg0KDQpTZW5zb3I9IG5lZ2F0aXZvID0gYSBtYXlvciBkaXN0YW5jaWEgZGVsIHNlbnNvciwgbWVub3IgcHJvYmFiaWxpZGFkIGRlIGRldGVjdGFyIHpvcnJvDQpBbHR1cmFjdCA9IG5lZ2F0aXZvID0gYSBtYXlvciBhbHR1cmEsIG1lbm9yIHByb2JhYmlsaWRhZCBkZSBkZXRlY3RhciB6b3JybyANCmBgYHtyfQ0KTW9kZWxvZ2xvYmFsID0gb2NjdSh+c2Vuc29yICsgQWx0dXJhY3QgfiBFY29zaXN0ZW1hLCB1bWYpDQpzdW1tYXJ5KE1vZGVsb2dsb2JhbCkNCmBgYA0KTW9kZWxvIGdsb2JhbCBubyBlcyB0YW4gYnVlbm8sIGFob3JhIHByb2JhciBtb2RlbG9zIGFsdGVybmF0aXZvcyA9IGVuIGdlbmVyYWwgZGVqYXIgZmlqbyAiT2N1cGFjacOzbiINCkdsb2JhbCBkZSBvY3VwYWNpw7NuDQoxPSBtb2RlbG8gZGUgZGV0ZWNjacOzbiBudWxhIHNpbiBjb3ZhcmlhYmxlcyBkZSBkZXRlY2Npw7NuDQoyPSANCmBgYHtyfQ0KTW9kZWxvLjEgPSBvY2N1KH4xIH4gRWNvc2lzdGVtYSwgdW1mKQ0KTW9kZWxvLnNlbnNvciA9IG9jY3UofnNlbnNvciB+IEVjb3Npc3RlbWEsIHVtZikNCk1vZGVsby5hbHR1cmEgPSBvY2N1KH5BbHR1cmFjdCB+IEVjb3Npc3RlbWEsIHVtZikNCk1vZGVsb3RvZG9zID0gb2NjdSh+c2Vuc29yICsgQWx0dXJhY3QgfiBFY29zaXN0ZW1hLCB1bWYpDQoNCmBgYA0KI0V2YWx1YWNpw7NuIGRlIG1vZGVsb3MNCg0KLj0xDQpgYGB7cn0NCm1vZGVsb3NkZWRldGVjY2lvbiA9IGZpdExpc3QoDQogICdwKC4pcHNpKEVjb3Npc3RlbWEpJyA9IE1vZGVsby4xLA0KICAncChzZW5zb3IpcHNpKEVjb3Npc3RlbWEpJyA9IE1vZGVsby5zZW5zb3IsDQogICdwKEFsdHVyYWN0KXBzaShFY29zaXN0ZW1hKScgPSBNb2RlbG8uYWx0dXJhLA0KICAncChzZW5zb3IgKyBBbHR1cmFjdClwc2koRWNvc2lzdGVtYSknID0gTW9kZWxvdG9kb3MNCikNCmBgYA0KI0NvbXBhcmFyIG1vZGVsb3MgZGUgZGV0ZWNjacOzbiBjb24gQUlDDQpgYGB7cn0NCnNldC5jYW5kaWRhdG9zID0gYyhNb2RlbG8uMSwgTW9kZWxvLnNlbnNvciwgTW9kZWxvLmFsdHVyYSwgTW9kZWxvdG9kb3MpDQptb2RuYW1lcyA9IGMoIk1vZGVsby4xIiwgIk1vZGVsby5zZW5zb3IiLCAiTW9kZWxvLmFsdHVyYSIsICJNb2RlbG90b2RvcyIpDQoNCmBgYA0KDQojYWljIFRBQlMsIFBBUkEgSEFDRVIgQ09NUEFSQUNJT05FUyBERSBNT0RFTE9TDQpTZWNvbmQub3JkID0gdGlyYSBlbCBBaWNDIFkgbm8gQUlDLCBjdWFuZG8gdW5vIHRpZW5lIHBvY29zIGRhdG9zIGhhY2UgdW4gYWp1c3RlIEFpY2M9IGEgbWVkaWRhIHF1ZSB0aWVuZXMgbWFzIGRhdG9zIHNlIHBhcmVjZSBBSUMNCg0KVGFibGE6DQpLPSBudW1lcm8gZGUgcGFyYW1ldHJvcyAodG9kb3MgPSA2LCBpbnRlcmNlcHRvLCBlY29zaXN0ZW1hIHRpZW5lIDMgKQ0KQUlDYywgQUlDY3d0LCBDdW0ud3QsIExMID0gTk8gSU1QT1JUQU4gTVVDSE8gcG9yIGFob3JhLi4uDQpEZWx0YV9BSUNDID0gY29tcGFyYWNpw7NuIGRlbCBtZWpvciBtb2RlbG8sIG1vZGVsb3MgY29uIGRlbHRhIG1lbm9yIGEgMiBubyB0aWVuZW4gZGlmZXJlbmNpYXMgc2lnbmlmaWNhdGl2YXMgKHBsYXVzaWJsZXMpDQoNCg0KIyBQYXJhbWV0cm9zOiANCiBPY3VwYWNpw7NuID0NCi0gSW50DQotIEVjLiBUdW5kcmENCi0gRWMuIE1hdG9ycmFsDQogRGV0ZWNjacOzbiA9DQotIEludA0KLSBzZW5zb3INCi0gQWx0dXJhY3QNCg0KYGBge3J9DQphaWN0YWIoc2V0LmNhbmRpZGF0b3MsIG1vZG5hbWVzLCANCiAgICAgICBzZWNvbmQub3JkID0gVFJVRSxzb3J0ID0gVFJVRSkNCnN1bW1hcnkoTW9kZWxvLjEpDQpgYGANCnByZWd1bnRhczoNCi0gcXVlIGhhY2Vtb3MgY29uIGVjb3Npc3RlbWEgKGp1bnRhciB0dW5kcmEgY29uIG1hdG9ycmFsPykNCi0gY29tbyBldmFsdWFyIGVzdGFjacOzbiBvIHRlbXBvcmFkYSwgNCBtZXNlcyBkdXJhY2nDs24gZGVzZGUgbGEgaW5zdGFsYWNpw7NuIGhhc3RhIHJldGlybyBkZSBDVC4NCg0KTGVlciBzb2JyZToNCi0gQUlDYw0KLSBWYXJpYWJsZXMgZGUgZGV0ZWNjacOzbiB5IG9jdXBhY2nDs24NCi0gRGVsdGEgQUlDYw0KDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KIyMgUEFSVEUgMQ0KbmVjZXNpdG8gIDMgZnVlbnRlcyBkZSBkYXRvczogb2Nhc2lvbmVzIGRlIG11ZXN0cmVvICh5KSwgY292YXJpYWJsZXMgYSBuaXZlbCBkZSBzaXRpbyAoc2l0ZUNvdnMpLCB5IGNvdmFyaWFibGVzIGEgbml2ZWwgZGUgb2Nhc2lvbiBkZSBtdWVzdHJlbyAoT2JzQ292cyluaW5ndW5hIGVuIGVzdGUgY2FzbyksIGVzdG8gc2UgZ3VhcmRhIGVuIHVuYSBzb2xhIG1hdHJpeiBxdWUgZXMgdW1mDQoNCiNMaWJyZXJpYXMNCmBgYHtyfQ0KbGlicmFyeSh1bm1hcmtlZCkNCmxpYnJhcnkoQUlDY21vZGF2ZykNCmxpYnJhcnkocmVhZHIpDQpgYGANCg0KI0FicmlyIGJhc2UgZGUgZGF0b3MNCg0KQXJyZWxnYXIgbm8gcHVkaW1vcyBhYnJpciBjdnMgbWF6ZXRhcw0KYGBge3J9DQpDdWxwZW8gPC0gcmVhZC5jc3YoIkN1bHBlbyIsIHNlcCA9ICI7IiwgaGVhZGVyID0gVCkNCg0KYGBgDQpDYW1iaWFyIGVjb3Npc3RlbWEgYSBmYWN0b3INCmBgYHtyfQ0KQ3VscGVvWyw5XSA9IGFzLmZhY3RvcihDdWxwZW9bLDldKQ0Kc3RyKEN1bHBlbykNCmBgYA0KYWhvcmEgaGFjZXIgZWwgInkiLCBjb3J0YXIgcGFyYSBxdWUgcXVlZGVuIGxhcyBvYyBoYXN0YSBsYSA2DQpgYGB7cn0NCnkgPSBDdWxwZW9bLDI6N10NCmBgYA0KDQphaG9yYSBoYWNlciA9IGNvdmFyaWFibGVzIGEgbml2ZWwgZGUgc2l0aW8gKHNpdGVDb3ZzKQ0KYGBge3J9DQpzaXRlQ292cyA9IGRhdGEuZnJhbWUoQ3VscGVvWyxjKCJFY29zaXN0ZW1hIiwgInNlbnNvciIsICJBbHR1cmFjdCIpXSkNCmBgYA0Kb2JzQ292cyBubyBleGlzdGUNCg0KYWhvcmEgaGFjZXIgInVtZiIgKGVzIHVuYSBmdW5jacOzbikNCmBgYHtyfQ0KdW1mID0gdW5tYXJrZWRGcmFtZU9jY3UoeT15LHNpdGVDb3ZzID0gc2l0ZUNvdnMpDQpzdW1tYXJ5KHVtZikNCmBgYA0KI01vZGVsb3MgZGUgb2N1cGFjacOzbg0KZnVuY2nDs24gZGUgb2N1cGFjacOzbiA9IG9jY3UgdmFyaWFibGVzIGRlIGRldGVjY2nDs24geSBzZWd1bmRhIHBhcnRlIHNvbiB2YXJpYWJsZSBkZSBvY3VwYWNpw7NuLCB1bWY9IGZ1ZW50ZSBkZSBkYXRvcw0KRWouTW9kZWxvMSA9IG9jY3UofkRldGVjY2lvbjEgKyBEZXRlY2Npw7NuMiArIERldGVjY2nDs24ibiIgfiBPY3VwYWNpw7NuMSArIE9jdXBhY2lvbjIgKyBPY3VwYWNpw7NuIm4iLCB1bWYpDQoNCiNNb2RlbG9nbG9iYWwNCg0KdXNhIGRlIHJlZmVyZW5jaWEgKHByaW1lcmEgZW4gb3JkZW4gYWxmYWJldGljbywgZW4gZXN0ZSBjYXNvICJCb3NxdWUiKSwgRXN0aW1hdGUgPSBzaSBlcyBwb3NpdGl2byBlcyBtYXMgcHJvYmFibGUgZGUgcXVlIHNlIG9jdXBlIHBvciBsYSBlc3BlY2llIChzaXRpbyksIHJlY29yZGFyIHF1ZSBlc3RhbW9zIGNvbXBhcmFyYW5kbyBjb24gYm9zcXVlIChpbnRlcmNlcHQpDQoNCkVzdGltYXRlID0gcmFybyBlbCB2YWxvciBkZSA3LjI4Li4uIChtdXkgYWx0bywgc2UgY29uZmlybWEgY29uIFNFKQ0KU0UgPSBlcnJvciBzdGFuZGFyIChtdXkgYWx0bywgcHJvYmFibGUganVudGFyIG1hdG9ycmFsIHkgdHVuZHJhKQ0KUCg+fFp8KSA9IG1hcyBhbHRvIHF1ZSAwLDA1LCBwb3IgbG8gdGFudG8sIG5vIHNvbiBzaWduaWZpY2F0aXZvcywgcG9yIGxvIHRhbnRvLCBubyBoYXkgZGlmZXJlbmNpYXMgZW4gb2N1cGFjacOzbiBwb3IgIkVjb3Npc3RlbWEiIChpbmZlcmVuY2lhKQ0KDQoNClNlbnNvcj0gbmVnYXRpdm8gPSBhIG1heW9yIGRpc3RhbmNpYSBkZWwgc2Vuc29yLCBtZW5vciBwcm9iYWJpbGlkYWQgZGUgZGV0ZWN0YXIgem9ycm8NCkFsdHVyYWN0ID0gbmVnYXRpdm8gPSBhIG1heW9yIGFsdHVyYSwgbWVub3IgcHJvYmFiaWxpZGFkIGRlIGRldGVjdGFyIHpvcnJvIA0KYGBge3J9DQpNb2RlbG9nbG9iYWwgPSBvY2N1KH5zZW5zb3IgKyBBbHR1cmFjdCB+IEVjb3Npc3RlbWEsIHVtZikNCnN1bW1hcnkoTW9kZWxvZ2xvYmFsKQ0KYGBgDQpNb2RlbG8gZ2xvYmFsIG5vIGVzIHRhbiBidWVubywgYWhvcmEgcHJvYmFyIG1vZGVsb3MgYWx0ZXJuYXRpdm9zID0gZW4gZ2VuZXJhbCBkZWphciBmaWpvICJPY3VwYWNpw7NuIg0KR2xvYmFsIGRlIG9jdXBhY2nDs24NCjE9IG1vZGVsbyBkZSBkZXRlY2Npw7NuIG51bGEgc2luIGNvdmFyaWFibGVzIGRlIGRldGVjY2nDs24NCjI9IA0KYGBge3J9DQpNb2RlbG8uMSA9IG9jY3UofjEgfiBFY29zaXN0ZW1hLCB1bWYpDQpNb2RlbG8uc2Vuc29yID0gb2NjdSh+c2Vuc29yIH4gRWNvc2lzdGVtYSwgdW1mKQ0KTW9kZWxvLmFsdHVyYSA9IG9jY3UofkFsdHVyYWN0IH4gRWNvc2lzdGVtYSwgdW1mKQ0KTW9kZWxvdG9kb3MgPSBvY2N1KH5zZW5zb3IgKyBBbHR1cmFjdCB+IEVjb3Npc3RlbWEsIHVtZikNCg0KYGBgDQojRXZhbHVhY2nDs24gZGUgbW9kZWxvcw0KDQouPTENCmBgYHtyfQ0KbW9kZWxvc2RlZGV0ZWNjaW9uID0gZml0TGlzdCgNCiAgJ3AoLilwc2koRWNvc2lzdGVtYSknID0gTW9kZWxvLjEsDQogICdwKHNlbnNvcilwc2koRWNvc2lzdGVtYSknID0gTW9kZWxvLnNlbnNvciwNCiAgJ3AoQWx0dXJhY3QpcHNpKEVjb3Npc3RlbWEpJyA9IE1vZGVsby5hbHR1cmEsDQogICdwKHNlbnNvciArIEFsdHVyYWN0KXBzaShFY29zaXN0ZW1hKScgPSBNb2RlbG90b2Rvcw0KKQ0KYGBgDQojQ29tcGFyYXIgbW9kZWxvcyBkZSBkZXRlY2Npw7NuIGNvbiBBSUMNCmBgYHtyfQ0Kc2V0LmNhbmRpZGF0b3MgPSBjKE1vZGVsby4xLCBNb2RlbG8uc2Vuc29yLCBNb2RlbG8uYWx0dXJhLCBNb2RlbG90b2RvcykNCm1vZG5hbWVzID0gYygiTW9kZWxvLjEiLCAiTW9kZWxvLnNlbnNvciIsICJNb2RlbG8uYWx0dXJhIiwgIk1vZGVsb3RvZG9zIikNCg0KYGBgDQoNCiNhaWMgVEFCUywgUEFSQSBIQUNFUiBDT01QQVJBQ0lPTkVTIERFIE1PREVMT1MNClNlY29uZC5vcmQgPSB0aXJhIGVsIEFpY0MgWSBubyBBSUMsIGN1YW5kbyB1bm8gdGllbmUgcG9jb3MgZGF0b3MgaGFjZSB1biBhanVzdGUgQWljYz0gYSBtZWRpZGEgcXVlIHRpZW5lcyBtYXMgZGF0b3Mgc2UgcGFyZWNlIEFJQw0KDQpUYWJsYToNCks9IG51bWVybyBkZSBwYXJhbWV0cm9zICh0b2RvcyA9IDYsIGludGVyY2VwdG8sIGVjb3Npc3RlbWEgdGllbmUgMyApDQpBSUNjLCBBSUNjd3QsIEN1bS53dCwgTEwgPSBOTyBJTVBPUlRBTiBNVUNITyBwb3IgYWhvcmEuLi4NCkRlbHRhX0FJQ0MgPSBjb21wYXJhY2nDs24gZGVsIG1lam9yIG1vZGVsbywgbW9kZWxvcyBjb24gZGVsdGEgbWVub3IgYSAyIG5vIHRpZW5lbiBkaWZlcmVuY2lhcyBzaWduaWZpY2F0aXZhcyAocGxhdXNpYmxlcykNCg0KDQojIFBhcmFtZXRyb3M6IA0KIE9jdXBhY2nDs24gPQ0KLSBJbnQNCi0gRWMuIFR1bmRyYQ0KLSBFYy4gTWF0b3JyYWwNCiBEZXRlY2Npw7NuID0NCi0gSW50DQotIHNlbnNvcg0KLSBBbHR1cmFjdA0KDQpgYGB7cn0NCmFpY3RhYihzZXQuY2FuZGlkYXRvcywgbW9kbmFtZXMsIA0KICAgICAgIHNlY29uZC5vcmQgPSBUUlVFLHNvcnQgPSBUUlVFKQ0Kc3VtbWFyeShNb2RlbG8uMSkNCmBgYA0KI3ByZWd1bnRhczoNCg0KLSBxdcOpIGhhY2Vtb3MgY29uIGVjb3Npc3RlbWEgKGp1bnRhciB0dW5kcmEgY29uIG1hdG9ycmFsPykNCg0KUmVzcDogQ29uIGxvcyBlY29zaXN0ZW1hcyBvbWl0aXIgZXN0YSB2YXJpYWJsZSBjb21vIHRhbCBlbiBsYXMgZmljaGFzLCBkZXNjYXJnYXIgZWwgcmFzdGVyIGRlc2RlICJodHRwczovL3d3dy5nbG9iYWxmb3Jlc3R3YXRjaC5vcmcvbWFwLz9tYXA9ZXlKalpXNTBaWElpT25zaWJHRjBJam90TlRNdU16Z3dNRFF6TmpjMk5EQTNOak1zSW14dVp5STZMVGN4TGpNMU9UWXhNekk1T1RNeU1EUXlmU3dpZW05dmJTSTZNVEV1TWpFNE1qSTJOek0xTVRjd016UTNmUSUzRCUzRCZtYXBQcm9tcHRzPWV5SnZjR1Z1SWpwMGNuVmxMQ0p6ZEdWd2MwdGxlU0k2SW5KbFkyVnVkRWx0WVdkbGNua2lmUSUzRCUzRCIsIHkgbHVlZ28gZ2VuZXJhciB1bmEgY2FwYSBkZSBidWZmZXIgY29uIHVuIHJhZGlvIGRlIDUwMG0ganVzdGlmaWNhZG8gY29uICJodHRwczovL2pvdXJuYWxzLnBsb3Mub3JnL3Bsb3NvbmUvYXJ0aWNsZT9pZD0xMC4xMzcxL2pvdXJuYWwucG9uZS4wMTM3ODU0DQoNCi0gcHJpbWVyIHBhc28gcG9uZXIgbGFzIGNvb3JkZW5hZGFzIHJlYWxlcyBkZSBsb3MgcHVudG9zIGRlIGN0DQoNCi0gY29tbyBldmFsdWFyIGVzdGFjacOzbiBvIHRlbXBvcmFkYSwgNCBtZXNlcyBkdXJhY2nDs24gZGVzZGUgbGEgaW5zdGFsYWNpw7NuIGhhc3RhIHJldGlybyBkZSBDVC4gcXVlZGEgcGVuZGllbnRlLCBwZXJvIGNvbW8gdmFyaWFibGUgZGUgKGRldGVjY2nDs24/KQ0KDQpMZWVyIHNvYnJlOg0KLSBBSUNjDQotIFZhcmlhYmxlcyBkZSBkZXRlY2Npw7NuIHkgb2N1cGFjacOzbg0KLSBEZWx0YSBBSUNjDQoNCiMjIFBBUlRFIDIsIHByb2JhbmRvIG1vZGVsb3MgYcOxYWRpZW5kbyB2YXJpYWJsZSBkZSBkZXRlY2Npw7NuIA0KDQoNCg==</div>
 
 
 
