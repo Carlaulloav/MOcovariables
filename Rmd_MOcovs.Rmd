@@ -16,7 +16,7 @@ library(readr)
 
 Arrelgar no pudimos abrir cvs mazetas
 ```{r}
-Culpeo <- read.csv("Culpeo", sep = ";", header = T)
+Culpeo <- read.csv("Culpeo.csv", sep = ";", header = T)
 
 ```
 Cambiar ecosistema a factor
