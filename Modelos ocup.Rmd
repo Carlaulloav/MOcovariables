@@ -2,6 +2,11 @@
 title: "R Notebook"
 output: html_notebook
 ---
+
+---
+title: "R Notebook"
+output: html_notebook
+---
 ## PARTE 1
 necesito  3 fuentes de datos: ocasiones de muestreo (y), covariables a nivel de sitio (siteCovs), y covariables a nivel de ocasion de muestreo (ObsCovs)ninguna en este caso), esto se guarda en una sola matriz que es umf
 
@@ -19,9 +24,10 @@ Arrelgar no pudimos abrir cvs mazetas
 Culpeo <- read.csv("Todascovs_Culpeo.csv", sep = ";", header = T)
 
 ```
-Cambiar ecosistema a factor
+Cambiar estacionalidad a factor (columna 12) 
+!!p62 tuvo un error por decimal y la dejamos como 100% de cobertura de bosque (1)!!
 ```{r}
-Culpeo[,9] = as.factor(Culpeo[,9])
+Culpeo[,12] = as.factor(Culpeo[,12])
 str(Culpeo)
 ```
 ahora hacer el "y", cortar para que queden las oc hasta la 6
@@ -55,8 +61,12 @@ P(>|Z|) = mas alto que 0,05, por lo tanto, no son significativos, por lo tanto, 
 
 Sensor= negativo = a mayor distancia del sensor, menor probabilidad de detectar zorro
 Alturact = negativo = a mayor altura, menor probabilidad de detectar zorro 
+
+#Conclusiones modelo global
+
+solo primavera es significativo porque es menor a 0.05
 ```{r}
-Modeloglobal = occu(~sensor + Alturact ~ Ecosistema, umf)
+Modeloglobal = occu(~sensor + Alturact + Estacionalidad ~ Hansen, umf)
 summary(Modeloglobal)
 ```
 Modelo global no es tan bueno, ahora probar modelos alternativos = en general dejar fijo "Ocupación"
@@ -64,27 +74,49 @@ Global de ocupación
 1= modelo de detección nula sin covariables de detección
 2= 
 ```{r}
-Modelo.1 = occu(~1 ~ Ecosistema, umf)
-Modelo.sensor = occu(~sensor ~ Ecosistema, umf)
-Modelo.altura = occu(~Alturact ~ Ecosistema, umf)
-Modelotodos = occu(~sensor + Alturact ~ Ecosistema, umf)
-
+Modelo.1 = occu(~1 ~ Hansen, umf)
+Modelo.sensor = occu(~sensor ~ Hansen, umf)
+Modelo.altura = occu(~Alturact ~ Hansen, umf)
+Modelo.Estacionalidad = occu(~Estacionalidad ~ Hansen, umf)
+Modelo.Se.Alt = occu(~sensor + Alturact ~ Hansen, umf)
+Modelo.Se.Est = occu(~sensor + Estacionalidad ~ Hansen, umf)
+Modelo.Est.Alt = occu(~Estacionalidad + Alturact ~ Hansen, umf)
+Modelotodos = occu(~sensor + Alturact + Estacionalidad ~ Hansen, umf)
+Modelo.1.1. = occu(~1 ~ 1, umf)
+summary(Modelo.1.1.)
 ```
+#Estacionalidad como variable de ocupación
+
+no es significativo
+- Discu: Menos diferencia entre sectores, la baja prob. de det no es biologica, probablemente es por muestra baja y menos abundancia.
+
+```{r}
+Modelo.sector = occu(~1~Estacionalidad, umf)
+summary(Modelo.sector)
+```
+
+
+
+
 #Evaluación de modelos
 
 .=1
 ```{r}
 modelosdedeteccion = fitList(
-  'p(.)psi(Ecosistema)' = Modelo.1,
-  'p(sensor)psi(Ecosistema)' = Modelo.sensor,
-  'p(Alturact)psi(Ecosistema)' = Modelo.altura,
-  'p(sensor + Alturact)psi(Ecosistema)' = Modelotodos
+  'p(.)psi(Hansen)' = Modelo.1,
+  'p(sensor)psi(Hansen)' = Modelo.sensor,
+  'p(Alturact)psi(Hansen)' = Modelo.altura,
+  'p(Estacionalidad)psi(Hansen)' = Modelo.Estacionalidad,
+  'p(sensor + Alturact)psi(Hansen)' = Modelo.Se.Alt,
+  'p(sensor + Estacionalidad)psi(Hansen)' = Modelo.Se.Est,
+  'p(Estacionalidad + Alturact)psi(Hansen)' = Modelo.Se.Alt,
+  'p(sensor + Alturact + Estacionalidad)psi(Hansen)' = Modelotodos
 )
 ```
 #Comparar modelos de detección con AIC
 ```{r}
-set.candidatos = c(Modelo.1, Modelo.sensor, Modelo.altura, Modelotodos)
-modnames = c("Modelo.1", "Modelo.sensor", "Modelo.altura", "Modelotodos")
+set.candidatos = c(Modelo.1, Modelo.sensor, Modelo.altura, Modelo.Estacionalidad, Modelo.Se.Alt, Modelo.Se.Est, Modelo.Se.Alt, Modelotodos)
+modnames = c("Modelo.1", "Modelo.sensor", "Modelo.altura", "Modelo.Estacionalidad", "Modelo.Se.Alt", "Modelo.Se.Est", "Modelo.Se.Alt", "Modelotodos")
 
 ```
 
@@ -110,7 +142,7 @@ Delta_AICC = comparación del mejor modelo, modelos con delta menor a 2 no tiene
 ```{r}
 aictab(set.candidatos, modnames, 
        second.ord = TRUE,sort = TRUE)
-summary(Modelo.1)
+summary(Modelo.Estacionalidad)
 ```
 #preguntas:
 
@@ -127,6 +159,51 @@ Leer sobre:
 - Variables de detección y ocupación
 - Delta AICc
 
-## PARTE 2, probando modelos añadiendo variable de detección 
+## PARTE 2, seleccionar variables de ocupación
 
+```{r}
+Modelo.Hansen = occu(~Estacionalidad ~ Hansen, umf)
+Modelo.conaf = occu(~Estacionalidad ~ CONAF, umf)
+Modelo.nulo = occu(~Estacionalidad ~ 1, umf)
+```
+#Evaluar modelos de variables de ocupación
+```{r}
+modelosdeocupacion = fitList(
+  'p(Estacionalidad)psi(Hansen)' = Modelo.Hansen,
+  'p(Estacionalidad)psi(CONAF)' = Modelo.conaf,
+  'p(Estacionalidad)psi(.)' = Modelo.nulo
+  )
+```
+#Obtener AIC
+```{r}
+set.candidatos2 = c(Modelo.nulo, Modelo.Hansen, Modelo.conaf)
+modnames2 = c("Modelo.nulo", "Modelo.Hansen", "Modelo.conaf")
+```
+
+
+#Modelo ganador wii
+
+Mejor modelo es el modelo nulo para ocupación 
+
+
+```{r}
+aictab(set.candidatos2, modnames2, 
+       second.ord = TRUE,sort = TRUE)
+summary(Modelo.nulo)
+summary(Modelo.conaf)
+summary(Modelo.Hansen)
+```
+
+```{r}
+summary(Modelo.conaf)
+```
+```{r}
+summary(Modelo.Hansen)
+```
+```{r}
+summary(Modelo.nulo)
+```
+```{r}
+plogis(Modelo.nulo)
+```
 
