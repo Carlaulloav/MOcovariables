@@ -1,0 +1,103 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+#Modelos con 6oc
+```{r}
+library(unmarked)
+library(AICcmodavg)
+library(readr)
+```
+
+abrir csv
+```{r}
+Culpeo <- read.csv("Culpeo8ocycovs.csv", sep = ";", header = T)
+```
+
+Cambiar estacionalidad a factor 
+
+```{r}
+Culpeo[,12] = as.factor(Culpeo[,12])
+str(Culpeo)
+```
+y= cortar las ocasiones del muestreo hasta la 8
+
+```{r}
+y = Culpeo[,2:7]
+```
+
+covariables a nivel de sitio
+
+```{r}
+siteCovs = data.frame(Culpeo[,c("CONAF","Hansen","Estacionalidad", "sensor", "Alturact")])
+```
+
+
+```{r}
+umf = unmarkedFrameOccu(y=y,siteCovs = siteCovs)
+summary(umf)
+```
+
+#Modelo global
+
+```{r}
+Modeloglobal = occu(~sensor + Alturact ~ Hansen + Estacionalidad , umf)
+summary(Modeloglobal)
+```
+```{r}
+Modelo.1 = occu(~1 ~ Hansen + Estacionalidad, umf)
+Modelo.sensor = occu(~sensor ~ Hansen + Estacionalidad, umf)
+Modelo.altura = occu(~Alturact ~ Hansen + Estacionalidad, umf)
+Modelo.Se.Alt = occu(~sensor + Alturact ~ Hansen + Estacionalidad, umf)
+
+```
+#Evaluación  de modelos
+
+```{r}
+modelosdedeteccion = fitList(
+  'p(.)psi(Hansen + Estacionalidad)' = Modelo.1,
+  'p(sensor)psi(Hansen + Estacionalidad)' = Modelo.sensor,
+  'p(Alturact)psi(Hansen + Estacionalidad)' = Modelo.altura,
+  'p(sensor + Alturact)psi(Hansen + Estacionalidad)' = Modelo.Se.Alt
+)
+```
+#Comparar modelos con AIC
+
+```{r}
+set.candidatos = c(Modelo.1, Modelo.sensor, Modelo.altura, Modelo.Se.Alt)
+modnames = c("Modelo.1", "Modelo.sensor", "Modelo.altura", "Modelo.Se.Alt")
+aictab(set.candidatos, modnames, 
+       second.ord = TRUE,sort = TRUE)
+```
+#Conclu modelo detección 
+- Modelo todos mejor modelo, Hansen y estacionalidad
+
+
+#Probar modelos con combinaciones de variabels de ocupación
+
+```{r}
+Modelo.nulo.nulo = occu(~1 ~ 1, umf)
+Modelo.Est. = occu(~1 ~ Estacionalidad, umf)
+Modelo.Hansen. = occu(~1 ~ Hansen, umf)
+Modelo.Est.Hansen = occu(~1 ~ Hansen + Estacionalidad, umf)
+```
+
+```{r}
+modelosdeocupacion = fitList(
+  'p(.)psi(.)' = Modelo.nulo.nulo,
+  'p(.)psi(Hansen)' = Modelo.Hansen.,
+  'p(.)psi(Estacionalidad)' = Modelo.Est.,
+  'p(.)psi(Hansen  + Estacionalidad)' = Modelo.Est.Hansen
+  )
+```
+```{r}
+set.candidatos3 = c(Modelo.nulo.nulo, Modelo.Hansen., Modelo.Est., Modelo.Est.Hansen)
+modnames3 = c("Modelo.nulo.nulo", "Modelo.Hansen.", "Modelo.Est.", "Modelo.Est.Hansen")
+```
+
+```{r}
+aictab(set.candidatos3, modnames3, 
+       second.ord = TRUE,sort = TRUE)
+summary(Modelo.Est.)
+```
+
